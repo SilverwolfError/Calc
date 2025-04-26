@@ -46,7 +46,7 @@ def general(operation,clues=['Please input first number','Please input second nu
                 else:
                     tm.showerror(str(type(res)),'Something went wrong.Please Try Again.')
             elif all(isinstance(k,str) for k in prm) == True:
-                if operation.__name__ in ('extandexp', 'factorexp','afe','fs','fa'):
+                if operation.__name__ in ('extandexp', 'factorexp','afe','fs','fa','l1'):
                     res = operation(*prm)
                     if isinstance(res,(int,float)):
                         back = tm.showinfo("tk",'result:'+str(round(res,5)))
@@ -202,6 +202,13 @@ def fraction_subtraction():
         except:
             tm.showerror("Error!",'The Fraction is wrong.')
     general(fa,['Please input the first fraction','Please input the second fraction'])
+def le1un():
+    def l1(equation):
+        eqlist = equation.split('=')
+        equation2 = s.Eq(sympify(eqlist[0]),sympify(eqlist[1]))
+        final = s.solve(equation2)
+        return final
+    general(l1,['Please input a 1:1'])
 t.Button(root,text='Addition',command=addition).grid(row=0,column=0)
 t.Button(root,text='Subtraction',command=subtraction).grid(row=0,column=1)
 t.Button(root,text='Multiplication',command=multiplication).grid(row=0,column=2)
@@ -226,6 +233,7 @@ t.Button(root,text='Expression\nDivision',command=division_for_expression).grid(
 t.Button(root,text='Fraction\nSimplification',command=fraction_simplification).grid(row=4,column=1)
 t.Button(root,text='Fraction\nAdd',command=fraction_add).grid(row=4,column=2)
 t.Button(root,text='Fraction\nSubtraction',command=fraction_subtraction).grid(row=4,column=3)
+t.Button(root,text='Solve 1:1',command=le1un).grid(row=4,column=4)
 t.Button(root,text='Extra Option',command=extra).grid(row=5,column=1)
 t.Button(root,text='Quit',command=closed).grid(row=5,column=3)
 
