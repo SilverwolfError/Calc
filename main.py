@@ -4,6 +4,11 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QWidget
 import CalcForPyQt01_MainWindow
 import CalcForPyQt01_AdditionDialog
 
+def showDialog():
+    dialog = QDialog()
+    ui = CalcForPyQt01_AdditionDialog.Ui_Dialog()
+    ui.setupUi(dialog)
+    dialog.exec_()
 
 def close_window(self):
     MainWindow.close()
