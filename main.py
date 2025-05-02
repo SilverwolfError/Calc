@@ -5,16 +5,26 @@ import CalcForPyQt01_MainWindow
 import CalcForPyQt01_AdditionDialog
 import CalcForPyQt01_ResultShow
 
-def showDialog():
+def showDialog(opr):
     global dialoginput
     global result
     dialoginput = QDialog()
     ui = CalcForPyQt01_AdditionDialog.Ui_Dialog()
     ui.setupUi(dialoginput)
+    if opr == 'subtraction':
+        ui.Adder1PT.setPlainText('subtrahend')
+        ui.Adder2PT.setPlainText('minuends')
     def calculation():
-        global result
-        result = str(int(ui.Adder1LE.text())+int(ui.Adder2LE.text()))
-        showResult()
+        try:
+            global result
+            if opr == 'add':
+                result = str(int(ui.Adder1LE.text())+int(ui.Adder2LE.text()))
+            elif opr == 'subtraction':
+                result = str(int(ui.Adder1LE.text())-int(ui.Adder2LE.text()))
+            showResult()
+        except:
+            result = 'Invalid Input'
+            showResult()
     ui.GetResultButton.clicked.connect(calculation)
     dialoginput.exec_()
 
@@ -43,5 +53,6 @@ if __name__ == '__main__':
     ui = CalcForPyQt01_MainWindow.Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    ui.AdditionButton.clicked.connect(showDialog)
+    ui.AdditionButton.clicked.connect(lambda:showDialog('add'))
+    ui.SubtractionButton.clicked.connect(lambda:showDialog('subtraction'))
     sys.exit(app.exec_())
