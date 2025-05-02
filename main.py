@@ -1,17 +1,42 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 
 import CalcForPyQt01_MainWindow
 import CalcForPyQt01_AdditionDialog
+import CalcForPyQt01_ResultShow
 
 def showDialog():
-    dialog = QDialog()
+    global dialoginput
+    global result
+    dialoginput = QDialog()
     ui = CalcForPyQt01_AdditionDialog.Ui_Dialog()
-    ui.setupUi(dialog)
-    dialog.exec_()
+    ui.setupUi(dialoginput)
+    def calculation():
+        global result
+        result = str(int(ui.Adder1LE.text())+int(ui.Adder2LE.text()))
+        showResult()
+    ui.GetResultButton.clicked.connect(calculation)
+    dialoginput.exec_()
 
-def close_window(self):
-    MainWindow.close()
+def showResult():
+    global dialogoutput
+    dialogoutput = QDialog()
+    ui = CalcForPyQt01_ResultShow.Ui_Dialog()
+    ui.setupUi(dialogoutput)
+    ui.ShowResult.setPlainText(result)
+    ui.OKButton.clicked.connect(lambda:close_all_windows(0))
+    ui.CancelButton.clicked.connect(lambda:close_all_windows(1))
+    dialogoutput.exec_()
+
+def close_all_windows(pm):
+    if pm == 0:
+        dialoginput.close()
+        dialogoutput.close()
+    else:
+        MainWindow.close()
+        dialoginput.close()
+        dialogoutput.close()
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
