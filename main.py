@@ -11,9 +11,14 @@ def showDialog(opr):
     dialoginput = QDialog()
     ui = CalcForPyQt01_AdditionDialog.Ui_Dialog()
     ui.setupUi(dialoginput)
+    ui.Adder1PT.setReadOnly(True)
+    ui.Adder2PT.setReadOnly(True)
     if opr == 'subtraction':
         ui.Adder1PT.setPlainText('subtrahend')
         ui.Adder2PT.setPlainText('minuends')
+    elif opr == 'multiplication':
+        ui.Adder1PT.setPlainText('multiplier')
+        ui.Adder2PT.setPlainText('multiplicand')
     def calculation():
         try:
             global result
@@ -21,6 +26,8 @@ def showDialog(opr):
                 result = str(int(ui.Adder1LE.text())+int(ui.Adder2LE.text()))
             elif opr == 'subtraction':
                 result = str(int(ui.Adder1LE.text())-int(ui.Adder2LE.text()))
+            elif opr == 'multiplication':
+                result = str(int(ui.Adder1LE.text())*int(ui.Adder2LE.text()))
             showResult()
         except:
             result = 'Invalid Input'
@@ -33,6 +40,7 @@ def showResult():
     dialogoutput = QDialog()
     ui = CalcForPyQt01_ResultShow.Ui_Dialog()
     ui.setupUi(dialogoutput)
+    ui.ShowResult.setReadOnly(True)
     ui.ShowResult.setPlainText(result)
     ui.OKButton.clicked.connect(lambda:close_all_windows(0))
     ui.CancelButton.clicked.connect(lambda:close_all_windows(1))
@@ -55,4 +63,5 @@ if __name__ == '__main__':
     MainWindow.show()
     ui.AdditionButton.clicked.connect(lambda:showDialog('add'))
     ui.SubtractionButton.clicked.connect(lambda:showDialog('subtraction'))
+    ui.MultiplicationButton.clicked.connect(lambda:showDialog('multiplication'))
     sys.exit(app.exec_())

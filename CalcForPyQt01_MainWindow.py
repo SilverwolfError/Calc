@@ -20,6 +20,12 @@ class Ui_MainWindow(object):
         self.AdditionButton = QtWidgets.QPushButton(self.centralwidget)
         self.AdditionButton.setGeometry(QtCore.QRect(20, 20, 75, 23))
         self.AdditionButton.setObjectName("AdditionButton")
+        self.SubtractionButton = QtWidgets.QPushButton(self.centralwidget)
+        self.SubtractionButton.setGeometry(QtCore.QRect(120, 20, 81, 23))
+        self.SubtractionButton.setObjectName("SubtractionButton")
+        self.MultiplicationButton = QtWidgets.QPushButton(self.centralwidget)
+        self.MultiplicationButton.setGeometry(QtCore.QRect(230, 20, 101, 23))
+        self.MultiplicationButton.setObjectName("MultiplicationButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 23))
@@ -36,3 +42,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.AdditionButton.setText(_translate("MainWindow", "Addition"))
+        self.SubtractionButton.setText(_translate("MainWindow", "Subtraction"))
+        self.MultiplicationButton.setText(_translate("MainWindow", "Multiplication"))

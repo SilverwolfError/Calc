@@ -27,6 +27,32 @@
      <string>Addition</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="SubtractionButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Subtraction</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MultiplicationButton">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>20</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Multiplication</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
