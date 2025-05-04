@@ -19,6 +19,15 @@ def showDialog(opr):
     elif opr == 'multiplication':
         ui.Adder1PT.setPlainText('multiplier')
         ui.Adder2PT.setPlainText('multiplicand')
+    elif opr == 'division':
+        ui.Adder1PT.setPlainText('dividend')
+        ui.Adder2PT.setPlainText('divisor')
+    elif opr == 'Exponentiation':
+        ui.Adder1PT.setPlainText('base')
+        ui.Adder2PT.setPlainText('exponent')
+    elif opr == 'radical':
+        ui.Adder1PT.setPlainText('radicand')
+        ui.Adder2PT.setPlainText('index')
     def calculation():
         try:
             global result
@@ -28,9 +37,21 @@ def showDialog(opr):
                 result = str(int(ui.Adder1LE.text())-int(ui.Adder2LE.text()))
             elif opr == 'multiplication':
                 result = str(int(ui.Adder1LE.text())*int(ui.Adder2LE.text()))
+            elif opr == 'division':
+                result = str(int(ui.Adder1LE.text())/int(ui.Adder2LE.text()))
+            elif opr == 'Exponentiation':
+                result = str(int(ui.Adder1LE.text())**int(ui.Adder2LE.text()))
+            elif opr == 'radical':
+                result = str(int(ui.Adder1LE.text())**(1/int(ui.Adder2LE.text())))
+            showResult()
+        except ValueError:
+            result = 'Invalid Input'
+            showResult()
+        except ZeroDivisionError:
+            result = 'Divisor do not be zero'
             showResult()
         except:
-            result = 'Invalid Input'
+            result = '???????????'
             showResult()
     ui.GetResultButton.clicked.connect(calculation)
     dialoginput.exec_()
@@ -64,4 +85,7 @@ if __name__ == '__main__':
     ui.AdditionButton.clicked.connect(lambda:showDialog('add'))
     ui.SubtractionButton.clicked.connect(lambda:showDialog('subtraction'))
     ui.MultiplicationButton.clicked.connect(lambda:showDialog('multiplication'))
+    ui.DivisionButton.clicked.connect(lambda:showDialog('division'))
+    ui.ExponentiationButton.clicked.connect(lambda:showDialog('Exponentiation'))
+    ui.RadicalButton.clicked.connect(lambda:showDialog('radical'))
     sys.exit(app.exec_())
